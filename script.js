@@ -16,11 +16,10 @@ function playGame(playerChoice, computerChoice = getComputerChoice()) {
     if (computerChoice == playerChoice) {
         return "It's a tie!"
     } else if (rules[playerChoice] == computerChoice) {
-        return "You won!"
+        return `You won! ${playerChoice} beats ${computerChoice}.`
     } else {
-        return "You lost!"
+        return `You lost! ${computerChoice} beats ${playerChoice}.`
     }
-
 }
 
 console.log(playGame("rock"));
