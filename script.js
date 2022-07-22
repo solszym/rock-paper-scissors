@@ -3,7 +3,7 @@ function getComputerChoice() {
     return arr[Math.floor(Math.random() * arr.length)]
 }
 
-function playGame(playerChoice, computerChoice = getComputerChoice()) {
+function singleRound(playerChoice, computerChoice = getComputerChoice()) {
     console.log(`computer: ${computerChoice}`)
     playerChoice = playerChoice.toLowerCase();
 
@@ -22,4 +22,3 @@ function playGame(playerChoice, computerChoice = getComputerChoice()) {
     }
 }
 
-console.log(playGame("rock"));
