@@ -14,7 +14,8 @@ body {
     font-size: 80px;
     margin: 30px 15px 0px;
     padding-bottom: 0px;
-    font-family: 'Minecraft', sans-serif;
+    font-family: 'MinecraftiaRegular', sans-serif;
+    font-weight: 900;
 }
 
 #paperTitle {
