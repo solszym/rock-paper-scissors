@@ -57,6 +57,11 @@ const h2 = document.querySelector('h2')
 const h3 = document.querySelector('h3')
 const playerWeapon = document.querySelector('#playerChoice')
 const computerWeapon = document.querySelector('#computerChoice')
+const playerScore = document.querySelector('#playerScore')
+const computerScore = document.querySelector('#computerScore')
+
+let computerPoints = 0;
+let playerPoints = 0;
 
 buttons.forEach(button => {
     button.addEventListener('click', () => {
@@ -68,18 +73,28 @@ buttons.forEach(button => {
 
         let computerChoice = getComputerChoice();
         let playerChoice = button.getAttribute('id')
-        console.log(`your choice: ${playerChoice}`)
-
 
         if (computerChoice == playerChoice) {
             h2.textContent = "It's a tie!"
             h3.textContent = `${computerChoice} ties with ${playerChoice}`
+
             playerWeapon.src = `img/${playerChoice}.webp`
             computerWeapon.src = `img/${computerChoice}.webp`
 
         } else if (beats[playerChoice] == computerChoice) {
             h2.textContent = `You won!`;
             h3.textContent = `${playerChoice} beats ${computerChoice}`
+
+            playerPoints++;
+            playerScore.textContent = `player: ${playerPoints}`
+            if (playerPoints == 5) {
+                h2.textContent = 'GAME OVER!'
+                h3.textContent = 'you\'ve won'
+                playerPoints = 0;
+                computerPoints = 0;
+                playerScore.textContent = 'player: 0'
+                computerScore.textContent = 'computer: 0'
+            }
 
             playerWeapon.src = `img/${playerChoice}.webp`
             computerWeapon.src = `img/${computerChoice}.webp`
@@ -88,9 +103,19 @@ buttons.forEach(button => {
             h2.textContent = `You lost!`;
             h3.textContent = `${computerChoice} beats ${playerChoice}`;
 
+            computerPoints++;
+            computerScore.textContent = `computer: ${computerPoints}`
+            if (computerPoints == 5) {
+                h2.textContent = 'GAME OVER'
+                h3.textContent = 'you\ve lost'
+                playerPoints = 0;
+                computerPoints = 0;
+                playerScore.textContent = 'player: 0'
+                computerScore.textContent = 'computer: 0'
+            }
+
             playerWeapon.src = `img/${playerChoice}.webp`
             computerWeapon.src = `img/${computerChoice}.webp`
-
         }
     })
 })
@@ -122,11 +147,11 @@ buttons.forEach(button => {
 
 
 
-// function game() {
-//     for (let i = 1; i <= 5; i++) {
-//         console.log(`Round ${i}:`)
-//         console.log(playRound());
-//     }
-// }
+function game() {
+    for (let i = 1; i <= 5; i++) {
+        console.log(`Round ${i}:`)
+        console.log(playRound());
+    }
+}
 
 // console.log(game())
