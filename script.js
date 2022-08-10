@@ -1,56 +1,3 @@
-function getComputerChoice() {
-    let arr = ["rock", "paper", "scissors"]
-    return arr[Math.floor(Math.random() * arr.length)]
-}
-
-// function playRoundConsole() {
-//     let beats = {
-//         "rock": "scissors",
-//         "scissors": "paper",
-//         "paper": "rock"
-//     }
-
-//     let computerChoice = getComputerChoice();
-//     let playerChoice = prompt("Rock, paper or scissors?");
-//     playerChoice = playerChoice.toLowerCase();
-
-//     while (!playerChoice.includes("rock") && !playerChoice.includes("paper") && !playerChoice.includes("scissors")) {
-//         console.log("Invalid input!");
-//         playerChoice = prompt("Rock, paper or scissors?");
-//         playerChoice = playerChoice.toLowerCase();
-//     }
-
-//     if (computerChoice == playerChoice) {
-//         return "It's a tie!"
-//     } else if (beats[playerChoice] == computerChoice) {
-//         return `You won! ${playerChoice} beats ${computerChoice}.`
-//     } else {
-//         return `You lost! ${computerChoice} beats ${playerChoice}.`
-//     }
-// }
-
-
-// function playRound(button) {
-
-//     let beats = {
-//         "rock": "scissors",
-//         "scissors": "paper",
-//         "paper": "rock"
-//     }
-
-//     let computerChoice = getComputerChoice();
-//     let playerChoice = button.getAttribute('id')
-//     console.log(`your choice: ${playerChoice}`)
-
-//     if (computerChoice == playerChoice) {
-//         console.log("It's a tie!")
-//     } else if (beats[playerChoice] == computerChoice) {
-//         console.log(`You won! ${playerChoice} beats ${computerChoice}.`)
-//     } else {
-//         console.log(`You lost! ${computerChoice} beats ${playerChoice}.`)
-//     }
-// }
-
 const buttons = document.querySelectorAll("button")
 const results = document.querySelector('#results')
 const h2 = document.querySelector('h2')
@@ -62,6 +9,11 @@ const computerScore = document.querySelector('#computerScore')
 
 let computerPoints = 0;
 let playerPoints = 0;
+
+function getComputerChoice() {
+    let arr = ["rock", "paper", "scissors"]
+    return arr[Math.floor(Math.random() * arr.length)]
+}
 
 buttons.forEach(button => {
     button.addEventListener('click', () => {
@@ -75,6 +27,7 @@ buttons.forEach(button => {
         let playerChoice = button.getAttribute('id')
 
         if (computerChoice == playerChoice) {
+            h2.style.color = '#28334aff'
             h2.textContent = "It's a tie!"
             h3.textContent = `${computerChoice} ties with ${playerChoice}`
 
@@ -82,76 +35,47 @@ buttons.forEach(button => {
             computerWeapon.src = `img/${computerChoice}.webp`
 
         } else if (beats[playerChoice] == computerChoice) {
+            h2.style.color = '#28334aff'
             h2.textContent = `You won!`;
             h3.textContent = `${playerChoice} beats ${computerChoice}`
+
+            playerWeapon.src = `img/${playerChoice}.webp`
+            computerWeapon.src = `img/${computerChoice}.webp`
 
             playerPoints++;
             playerScore.textContent = `player: ${playerPoints}`
             if (playerPoints == 5) {
+                h2.style.color = 'green'
                 h2.textContent = 'GAME OVER!'
-                h3.textContent = 'you\'ve won'
+                h3.textContent = "you've won"
                 playerPoints = 0;
                 computerPoints = 0;
                 playerScore.textContent = 'player: 0'
                 computerScore.textContent = 'computer: 0'
+                playerWeapon.src = `img/question.png`
+                computerWeapon.src = 'img/question.png'
             }
+        } else {
+            h2.style.color = '#28334aff'
+            h2.textContent = `You lost!`;
+            h3.textContent = `${computerChoice} beats ${playerChoice}`;
 
             playerWeapon.src = `img/${playerChoice}.webp`
             computerWeapon.src = `img/${computerChoice}.webp`
-
-        } else {
-            h2.textContent = `You lost!`;
-            h3.textContent = `${computerChoice} beats ${playerChoice}`;
 
             computerPoints++;
             computerScore.textContent = `computer: ${computerPoints}`
             if (computerPoints == 5) {
+                h2.style.color = 'red'
                 h2.textContent = 'GAME OVER'
-                h3.textContent = 'you\ve lost'
+                h3.textContent = "you've lost"
                 playerPoints = 0;
                 computerPoints = 0;
                 playerScore.textContent = 'player: 0'
                 computerScore.textContent = 'computer: 0'
+                playerWeapon.src = `img/question.png`
+                computerWeapon.src = 'img/question.png'
             }
-
-            playerWeapon.src = `img/${playerChoice}.webp`
-            computerWeapon.src = `img/${computerChoice}.webp`
         }
     })
 })
-
-// const rock = document.querySelector("#rock")
-// rock.addEventListener('click', () => {
-//     let beats = {
-//         "rock": "scissors",
-//         "scissors": "paper",
-//         "paper": "rock"
-//     }
-
-//     let computerChoice = getComputerChoice();
-//     let playerChoice = "rock"
-
-//     if (computerChoice == playerChoice) {
-//         console.log("It's a tie!")
-//     } else if (beats[playerChoice] == computerChoice) {
-//         console.log(`You won! ${playerChoice} beats ${computerChoice}.`)
-//     } else {
-//         console.log(`You lost! ${computerChoice} beats ${playerChoice}.`)
-//     }
-// });
-
-// const paper = document.querySelector("#paper")
-
-
-// const scissors = document.querySelector("#scissors")
-
-
-
-function game() {
-    for (let i = 1; i <= 5; i++) {
-        console.log(`Round ${i}:`)
-        console.log(playRound());
-    }
-}
-
-// console.log(game())
