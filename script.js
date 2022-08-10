@@ -55,6 +55,8 @@ const buttons = document.querySelectorAll("button")
 const results = document.querySelector('#results')
 const h2 = document.querySelector('h2')
 const h3 = document.querySelector('h3')
+const playerWeapon = document.querySelector('#playerChoice')
+const computerWeapon = document.querySelector('#computerChoice')
 
 buttons.forEach(button => {
     button.addEventListener('click', () => {
@@ -68,21 +70,27 @@ buttons.forEach(button => {
         let playerChoice = button.getAttribute('id')
         console.log(`your choice: ${playerChoice}`)
 
+
         if (computerChoice == playerChoice) {
             h2.textContent = "It's a tie!"
             h3.textContent = `${computerChoice} ties with ${playerChoice}`
+            playerWeapon.src = `img/${playerChoice}.webp`
+            computerWeapon.src = `img/${computerChoice}.webp`
 
-            console.log("It's a tie!")
         } else if (beats[playerChoice] == computerChoice) {
             h2.textContent = `You won!`;
             h3.textContent = `${playerChoice} beats ${computerChoice}`
 
-            console.log(`You won! ${playerChoice} beats ${computerChoice}.`)
+            playerWeapon.src = `img/${playerChoice}.webp`
+            computerWeapon.src = `img/${computerChoice}.webp`
+
         } else {
             h2.textContent = `You lost!`;
             h3.textContent = `${computerChoice} beats ${playerChoice}`;
 
-            console.log(`You lost! ${computerChoice} beats ${playerChoice}.`)
+            playerWeapon.src = `img/${playerChoice}.webp`
+            computerWeapon.src = `img/${computerChoice}.webp`
+
         }
     })
 })
