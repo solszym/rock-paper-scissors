@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(27, 27, 89);
+}
+
+h1 {
+    color: white;
+}
+
+.buttons {
+    display: flex;
+}
+
+button {
+    margin: 10px;
+}
+
+#results {
+    color: white;
+}
